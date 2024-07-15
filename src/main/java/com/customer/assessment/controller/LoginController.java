@@ -26,7 +26,7 @@ public class LoginController {
 			.withIgnorePaths("user_id");
 
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView login() {
 
 		ModelAndView model = new ModelAndView();
