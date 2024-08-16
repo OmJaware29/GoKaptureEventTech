@@ -13,7 +13,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<title>Customer-Home</title>
+<title >Customer-Home</title>
 <style>
 table, th, td {
 	border: 1px solid;
@@ -62,38 +62,40 @@ table, th, td {
 }
 </style>
 </head>
-<body>
+
+<body style="background-color: gray">
+
 	<div></div>
 	<hr>
 	<div style="width: 1200px; margin: 0 auto;">
 		<spring:url value="/save" var="addURL" />
-		<a href="${addURL}"> <i class="material-icons"
-			style="font-size: 28px; border-width: 3px; border-style: solid; border-color: black;">add</i></i></a>
+		<a href="${addURL}" style="color: orange;font-size: 20px">Add <i class="material-icons"
+			style="font-size: 30px; border-width: 3px; border-style: solid; border-color: black;color: white;">add</i></i></a>
 		<spring:url value="/sync" var="syncURL" />
-		<a class="info" href="${syncURL}"> Sync Customers</a> 
-		
-		<select id = "searchBy" name="search">
-    		<c:forEach items="${searchBy}" var="s">
-        		<option value="${s.value}">${s.key}</option>
-    		</c:forEach>
-		</select>
-		
-		<input type="text" name="searchVal" id = "searchVal">
-		<button type="button" id="search"><i class="material-icons"
-			style="font-size: 15px;color:black;">search</i></button>
-		<button type="button" id="reset"><i class="material-icons"
-			style="font-size: 15px;color:black;">autorenew</i></button>
+		<a class="info" href="${syncURL}"> Sync Customers</a> <select
+			id="searchBy" name="search">
+			<c:forEach items="${searchBy}" var="s">
+				<option value="${s.value}">${s.key}</option>
+			</c:forEach>
+		</select> <input type="text" name="searchVal" id="searchVal">
+		<button type="button" id="search">
+			<i class="material-icons" style="font-size: 15px; color: black;">search</i>
+		</button>
+		<button type="button" id="reset">
+			<i class="material-icons" style="font-size: 15px; color: black;">autorenew</i>
+		</button>
 		<hr>
 
 		<c:choose>
 			<c:when test="${fn:length(customerDTOs) > 0}">
-				<table>
-					<thead>
-						<th style="width: 200px; margin: 0 auto; text-align: center">First
+				<table class="">
+					<thead style="background-color:black;;color: white">
+						<th
+							style="width: 200px; margin: 0 auto; text-align: center;background-color:black; color: white">First
 							Name</th>
 						<th style="width: 200px; margin: 0 auto; text-align: center">Last
 							Name</th>
-						<th style="width: 200px; margin: 0 auto; text-align: center">Address</th>
+						<th style="width: 200px; margin: 0 auto; text-align: center;">Address</th>
 						<th style="width: 200px; margin: 0 auto; text-align: center">City</th>
 						<th style="width: 200px; margin: 0 auto; text-align: center">State</th>
 						<th style="width: 200px; margin: 0 auto; text-align: center">Email</th>
@@ -101,7 +103,8 @@ table, th, td {
 						<th style="width: 200px; margin: 0 auto; text-align: center">Action</th>
 					</thead>
 
-					<tbody>
+
+					<tbody style="background-color: black; color: white">
 						<c:forEach items="${customerDTOs}" var="customerDTO">
 							<tr>
 								<td style="width: 200px; margin: 0 auto; text-align: center">${customerDTO.firstName}</td>
@@ -129,7 +132,7 @@ table, th, td {
 			</c:when>
 
 			<c:otherwise>
-				<h1>No Data Found!!</h1>
+				<h1 style="color: white; text-align: center;">No Data Found!!</h1>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -137,27 +140,32 @@ table, th, td {
 <script src="https://code.jquery.com/jquery-1.10.2.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+	$(document).ready(
+			function() {
+				$('#search').click(
+						function() {
 
-$(document).ready(function(){
-	$('#search').click(function(){
-  		
-  		var searchBy = $('#searchBy').val();
-		console.log(searchBy);
+							var searchBy = $('#searchBy').val();
+							console.log(searchBy);
 
-		var searchVal = $('#searchVal').val();
-		console.log(searchVal);
-		
-		var searchURL = "/list?searchBy="+searchBy+"&searchValue="+searchVal;
-		window.location = window.location.protocol + '//' + window.location.host + searchURL
-       
-  	});
-	
-	$('#reset').click(function(){
-  		
-		var resetURL = "/list";
-		window.location = window.location.protocol + '//' + window.location.host + resetURL
-       
-  	});
-});
+							var searchVal = $('#searchVal').val();
+							console.log(searchVal);
+
+							var searchURL = "/list?searchBy=" + searchBy
+									+ "&searchValue=" + searchVal;
+							window.location = window.location.protocol + '//'
+									+ window.location.host + searchURL
+
+						});
+
+				$('#reset').click(
+						function() {
+
+							var resetURL = "/list";
+							window.location = window.location.protocol + '//'
+									+ window.location.host + resetURL
+
+						});
+			});
 </script>
 </html>

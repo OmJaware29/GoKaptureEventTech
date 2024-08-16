@@ -12,7 +12,7 @@
 <title>Add Customer</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<style>
+	<style  >
 	.required::after {
      content:"*" ;
      color:red   
@@ -22,9 +22,15 @@
      font-size:9px
      }
 	</style>
+	<style>
+.custom-red-btn {
+    background-color: red; /* Override Bootstrap's success color */
+    border-color: red; /* Ensure the border matches the background */
+}
+</style>
 </head>
-<body>
-	<div class="container">
+<body style="background-color: gray;color: white;">
+	<div class="container ">
 		<spring:url value="/save" var="addURL" />
 
 		<form:form modelAttribute="customerDTO" method="post"
@@ -40,12 +46,18 @@
 			</c:if>
 
 
-			<div class="form-group">
+
+
+
+
+
+
+			<div class="form-group bg-dark text-white">
 				<div class="row">
 					<div class="col-md-6">
 						<label class="required">First Name</label>
 						<form:input path="firstName" pattern="[A-Za-z]+"
-							cssClass="form-control" />
+							Class="form-control bg-dark text-white" />
 						<form:errors class="error" path="firstName"></form:errors>
 					</div>
 					<div class="col-md-6">
@@ -103,7 +115,7 @@
 				<button type="submit" class="btn btn-success">Update</button>
 			</c:if>
 			<spring:url value="/list" var="addURL" />
-			<a class="info" href="${addURL}">Cancel</a>
+			<a class="btn btn-success custom-red-btn" href="${addURL}">Cancel</a>
 		</form:form>
 
 	</div>

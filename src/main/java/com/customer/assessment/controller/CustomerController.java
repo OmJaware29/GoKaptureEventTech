@@ -2,8 +2,6 @@ package com.customer.assessment.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpHeaders;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +31,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -100,7 +96,7 @@ public class CustomerController {
 				customerDTO.setPhone(tuple.get("phone"));
 				if (rows.size() > 0) {
 
-					Integer record = (Integer) rows.get(0);
+				 	Integer record = (Integer) rows.get(0);
 					customerDTO.setId(record);
 					customerService.update(customerDTO);
 				} else {
